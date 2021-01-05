@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import FileResponse
 from .models import Resume, Skill, Education, Experience
 
 # Create your views here.
@@ -24,3 +25,9 @@ def blog(request):
         'title': "blog"
     }
     return render(request, 'resume/blog.html',context)
+
+def download(request):
+    resume = Resume.objects.get(pk=1)
+    filename = resume.cv.path
+    response = FileResponse(open(filename, 'rb'))
+    return response

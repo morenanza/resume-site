@@ -12,6 +12,7 @@ class Resume(models.Model):
     email = models.CharField(max_length=30)
     skype = models.CharField(max_length=30)
     languages = models.CharField(max_length=30)
+    cv = models.FileField(upload_to="resume/static/file", null=True)
 
 class Experience(models.Model):
     title = models.CharField(max_length=30)
